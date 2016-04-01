@@ -1,1 +1,2 @@
 # GameOfLife
+programmed in java
