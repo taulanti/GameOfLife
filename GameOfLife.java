@@ -28,8 +28,8 @@ public class GameOfLife {
 		for(int row = 0; row < temp.length; row++){
 			for(int col = 0; col < temp[row].length; col++){
 				neighborValues = getNeighborValues(row,col,temp);
-				if     (neighborValues < 2 || neighborValues > 3)			{a[row][col] = 0;}
-				else if(neighborValues == 3 && a[row][col] == 0)			{a[row][col] = 1;}
+				if     (neighborValues < 2 || neighborValues > 3) {a[row][col] = 0;}
+				else if(neighborValues == 3 && a[row][col] == 0	  {a[row][col] = 1;}
 			}
 		}	
 	}
