@@ -15,26 +15,31 @@ public class GameOfLife {
 	}
 	
 	/*rules 
-	 * Each cell with one or no neighbors dies, as if by solitude.
-	 * Each cell with four or more neighbors dies, as if by overpopulation.
-	 * Each cell with two or three neighbors survives.
-	 * Each cell with three neighbors becomes populated.
+	 * Each cell with one or no neighbours dies, as if by solitude.
+	 * Each cell with four or more neighbours dies, as if by overpopulation.
+	 * Each cell with two or three neighbours survives.
+	 * Each cell with three neighbours becomes populated.
 	 */
 	 
 	// this function will walk through board and process every cell
 	
 	private static void liveORdieORbloom(int [][] a , int [][] temp){
-		int neighborValues = 0;
+		
 		for(int row = 0; row < temp.length; row++){
 			for(int col = 0; col < temp[row].length; col++){
-				neighborValues = getNeighborValues(row,col,temp);
-				if     (neighborValues < 2 || neighborValues > 3) {a[row][col] = 0;}
-				else if(neighborValues == 3 && a[row][col] == 0	  {a[row][col] = 1;}
+				updateCell(row,col,a,temp);
 			}
 		}	
 	}
 	
-	private static int getNeighborValues(int row, int col, int [][] temp){
+	private static void updateCell(int row, int col, int [][] a, int [][] temp){
+		int neighbourValues = getneighbourValues(row,col,temp);
+		if     (neighbourValues < 2 || neighbourValues > 3)	{a[row][col] = 0;}
+		else if(neighbourValues == 3 && a[row][col] == 0)	{a[row][col] = 1;}
+		
+	}
+	
+	private static int getneighbourValues(int row, int col, int [][] temp){
 		int sum = 0;
 		sum += getCellValue(row,col+1,temp);		//right cell
 		sum += getCellValue(row,col-1,temp);		//left cell
@@ -64,6 +69,7 @@ public class GameOfLife {
 		copyMatrix(a, temp);
 	}
 	
+	//test method for using matrix instead of a graphical board for game
 	public static void printBoard(int [][] a){
 		for (int i = 0; i < a.length; i++) {
 			for (int j = 0; j < a[i].length; j++) {
